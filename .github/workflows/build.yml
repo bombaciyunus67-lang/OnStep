@@ -19,6 +19,7 @@ jobs:
         run: |
           mkdir -p /tmp/OnStep
           cp -r . /tmp/OnStep/
+          sed -i 's/void tone(uint8_t pin, unsigned int frequency, unsigned long duration = 0)/void tone(uint8_t pin, unsigned int frequency, unsigned long duration)/g' /tmp/OnStep/src/HAL/ESP32/Analog.h
           arduino-cli compile --fqbn esp32:esp32:esp32:FlashMode=dio,FlashFreq=40,PartitionScheme=huge_app --export-binaries /tmp/OnStep
       - name: Collect files
         run: |
